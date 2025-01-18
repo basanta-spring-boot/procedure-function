@@ -23,4 +23,16 @@ public class ProductController {
         return service.getTotalOrderPrice(productId);
     }
 
+    // Endpoint to process an order
+    @PostMapping("/process/{productId}/{quantity}")
+    public String processOrder(@PathVariable("productId") int productId,
+                               @PathVariable("quantity") int quantity) {
+        try {
+            service.processOrder(productId, quantity);
+            return "Order processed successfully";
+        } catch (Exception e) {
+            return "Error processing order: " + e.getMessage();
+        }
+    }
+
 }

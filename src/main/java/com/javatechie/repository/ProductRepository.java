@@ -9,9 +9,11 @@ import org.springframework.data.repository.query.Param;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Procedure(name = "updateStockProcedure")
-    void updateStock(@Param("product_id") Integer productId,
-                     @Param("sold_quantity") Integer soldQuantity);
+    void updateStock(Integer productId, Integer quantity);
 
     @Query(value = "SELECT get_total_price(:productId)", nativeQuery = true)
     Double getTotalPrice(int productId);
+
+    @Procedure(name = "processOrder")
+    void processOrder(Integer productId, Integer quantity);
 }

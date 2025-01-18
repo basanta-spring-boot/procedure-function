@@ -20,6 +20,10 @@ public class ProductService {
         return productRepository.getTotalPrice(orderId);
     }
 
+    public void processOrder(int productId, int quantity) {
+        productRepository.processOrder(productId, quantity);
+    }
+
     public Product checkProduct(int productId) {
         // Retrieve the product and read its stock
         return productRepository.findById(productId)
